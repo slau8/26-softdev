@@ -42,24 +42,24 @@ var circle = function(x, y, r, c){
   	getDy: function(){
   	    return this.dy;
   	},
-  	setX: function(x){
-  	    this.circle.setAttribute("cx", x);
+  	setX: function(x1){
+  	    this.circle.setAttribute("cx", x1);
   	},
-  	setY: function(y){
-  	    this.circle.setAttribute("cy", y);
+  	setY: function(y1){
+  	    this.circle.setAttribute("cy", y1);
   	},
-  	setRadius: function(r){
-  	    this.circle.setAttribute("r", r);
+  	setRadius: function(r1){
+  	    this.circle.setAttribute("r", r1);
   	},
-    setColor: function(color){
-  	    this.circle.setAttribute("fill", color);
+    setColor: function(c1){
+  	    this.circle.setAttribute("fill", c1);
         this.circle.setAttribute("stroke", "black");
   	},
   	setDx: function(dx){
-  	    this.dx = n;
+  	    this.dx = dx;
   	},
   	setDy: function(dy){
-  	    this.dy = n;
+  	    this.dy = dy;
   	},
     move: function(){
       if (this.getX() <= this.getRadius() || this.getX() >= width - this.getRadius()) {
@@ -69,16 +69,16 @@ var circle = function(x, y, r, c){
         this.setDy(getDy() * -1);
       }
       this.setX(this.getX() + this.getDx());
-      this.setY(this.getY() + this.getD());
-    }
+      this.setY(this.getY() + this.getDy());
+    },
     display: function(){
-      c.setX(x);
-      c.setY(y);
-      c.setRadius(r);
-      c.setColor(c);
-	    svg.appendChild(this.circle);
+      svg.appendChild(this.circle);
   	}
   }
+  c.setX(x);
+  c.setY(y);
+  c.setRadius(r);
+  c.setColor(c);
   return c;
 };
 
@@ -91,7 +91,7 @@ var animate = function(){
 }
 
 var svgCallBack = function(){
-  var c = circle(10,"blue");
+  var c = circle(Math.random() * width, Math.random() * height, 10,"blue");
   c.display();
   circles.push(c);
   id = window.requestAnimationFrame(animate);
